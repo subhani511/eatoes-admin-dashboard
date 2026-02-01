@@ -23,16 +23,15 @@ app.get("/api/health", (req, res) => {
   });
 });
 
-// Start server
+// Routes
+const menuRoutes = require("./routes/menuRoutes");
+const orderRoutes = require("./routes/orderRoutes");
+
+app.use("/api/menu", menuRoutes);
+app.use("/api/orders", orderRoutes);
+
+// Start server (ALWAYS LAST)
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
-
-const menuRoutes = require("./routes/menuRoutes");
-
-app.use("/api/menu", menuRoutes);
-
-const orderRoutes = require("./routes/orderRoutes");
-
-app.use("/api/orders", orderRoutes);
